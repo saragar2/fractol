@@ -1,12 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   julia.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: saragar2 <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/27 11:13:32 by saragar2          #+#    #+#             */
+/*   Updated: 2023/12/27 11:13:35 by saragar2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-// Función para calcular el módulo cuadrado de un número complejo
 double	complex_magnitude_squared(t_Complex c)
 {
 	return (c.real * c.real + c.imag * c.imag);
 }
 
-// Función para realizar una iteración en el conjunto de Julia
 int	julia_set_iteration(t_Complex z, t_Complex c, int maxIterations)
 {
 	int		iterations;
@@ -25,44 +35,31 @@ int	julia_set_iteration(t_Complex z, t_Complex c, int maxIterations)
 	return (iterations);
 }
 
-// Función para generar el conjunto de Julia utilizando minilibX
-void	generate_julia_set(void *mlx, void *win, int width, int height)
+void	generate_julia_set(void *mlx, void *win)
 {
 	t_Mandm		g;
 	t_Complex	z;
 	t_Complex	c;
 
-	g = (t_Mandm){-2.0, 2.0, -2.0, 2.0, 0, 0, 0, 0, 0, 0, 0};
+	g = (t_Mandm){-2.0, 2.0, -2.0, 2.0, 1000, 1000, 0, 0, 0, 0, 0, 0, 0};
 	g.max_iterations = 150;
 	g.y = 0;
-	while (g.y < height)
+	while (g.y < g.height)
 	{
 		g.x = 0;
-		while (g.x < width)
+		while (g.x < g.width)
 		{
-			g.real_part = g.xmin + g.x * (g.xmax - g.xmin) / (width - 1);
-			g.imag_part = g.ymin + g.y * (g.ymax - g.ymin) / (height - 1);
+			g.real_part = g.xmin + g.x * (g.xmax - g.xmin) / (g.width - 1);
+			g.imag_part = g.ymin + g.y * (g.ymax - g.ymin) / (g.height - 1);
 			z = (t_Complex){g.real_part, g.imag_part};
-			c = (t_Complex){-0.661, -0.346};
+			c = (t_Complex){-0.759, 0.132};
 			g.iterations = julia_set_iteration(z, c, g.max_iterations);
 			g.color = select_color(g.iterations, g.max_iterations);
-			mlx_pixel_put(mlx, win, g.x, g.y, g.color);
-			g.x++;
+			mlx_pixel_put(mlx, win, g.x++, g.y, g.color);
 		}
 		g.y++;
 	}
-	//mlx_key_hook(win, exit, 0);
+	mlx_key_hook(win, go_exit, (void *)mlx);
+	mlx_hook(win, 17, 0, go_exit_cross, (void *)mlx);
 	mlx_loop(mlx);
-}
-
-int main() {
-    void *mlx;
-     void *win;
-
-     mlx = mlx_init();
-    win = mlx_new_window(mlx, 1000, 1000, "Conjunto de Julia");
-
-     generate_julia_set(mlx, win, 1000, 1000);
-
-     return 0;
 }

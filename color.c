@@ -1,0 +1,136 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: saragar2 <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/27 11:12:59 by saragar2          #+#    #+#             */
+/*   Updated: 2023/12/27 11:13:03 by saragar2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "fractol.h"
+/* @MIGUEMOLIAGA
+int	create_trgb(int t, int r)
+{
+	return (t << 24 | ((r * 2) % 256) << 16
+		| ((r * 5) % 256) << 8 | (r * 3) % 256);
+}
+*/
+int	rgb_to_hex(int red, int green, int blue)
+{
+	int	hex_color;
+
+	if (red < 0)
+		red = 0;
+	else if (red > 255)
+		red = 255;
+	if (green < 0)
+		green = 0;
+	else if (green > 255)
+		green = 255;
+	if (blue < 0)
+		blue = 0;
+	else if (blue > 255)
+		blue = 255;
+	hex_color = (red << 16) | (green << 8) | blue;
+	return (hex_color);
+}
+
+void	second_aux(int *iterations, int *red, int *green)
+{
+	if (*iterations >= 255)
+	{
+		*green = 0;
+		*iterations -= 255;
+		if (*iterations >= 255)
+		{
+			*red = 255;
+			*iterations -= *red;
+		}
+		else
+		{
+			*red = *iterations;
+			*iterations = -1;
+		}
+	}
+	else
+	{
+		*green -= *iterations;
+		*iterations = -1;
+	}
+}
+
+void	first_aux(int *iterations, int *red, int *green, int *blue)
+{
+	if (*iterations >= 255)
+	{
+		*red = 0;
+		*iterations -= 255;
+		if (*iterations >= 255)
+		{
+			*blue = 255;
+			*iterations -= *blue;
+			second_aux(iterations, red, green);
+		}
+		else
+		{
+			*blue = *iterations;
+			*iterations = -1;
+		}
+	}
+	else
+	{
+		*red -= *iterations;
+		*iterations = -1;
+	}
+}
+
+int	select_color(int iterations, int max_iterations)
+{
+	t_Rgb	col;
+
+	col = (t_Rgb){0, 0, 0, 0};
+	if (iterations == max_iterations)
+		return (col.final_color = rgb_to_hex(col.red, col.green, col.blue));
+	iterations *= 15;
+	if (iterations <= 255) //QUITAR PARA QUE EL FONDO SEA ROJO
+		return (col.final_color = rgb_to_hex(iterations, col.green, col.blue));
+	while (iterations >= 0)
+	{
+		col.red = 255;
+		iterations -= col.red;
+		if (iterations >= 255)
+		{
+			col.green = 255;
+			iterations -= col.green;
+			first_aux(&iterations, &col.red, &col.green, &col.blue);
+		}
+		else
+		{
+			col.green = iterations;
+			iterations = -1;
+		}
+	}
+	return (col.final_color = rgb_to_hex(col.red, col.green, col.blue));
+}
+
+/*int select_color(int iterations, int max_iterations)
+{
+    int color;
+	int	basecolor;
+    
+	basecolor = 0xff0000;
+    if (iterations == max_iterations)
+        color = 0x000000;
+	else if (iterations == 0)
+		color = basecolor;
+    else
+	{
+		color = (iterations * 0x000100 * 20) + basecolor;
+		if (basecolor >= 0xff0000 && color >= 0xffffff)
+			color = color - (iterations * 0x010000 * 2);
+	}
+    return (color);
+}*/
