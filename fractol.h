@@ -48,14 +48,34 @@ typedef struct s_Rgb
 	int	final_color;
 }t_Rgb;
 
+typedef struct s_Img
+{
+	void	*mlx;
+	void	*win;
+	int		*image;
+	char	*data;
+	int		bpp;
+	int		sizeline;
+	int		endian;
+}t_Img;
+
 double	complex_magnitude_squared(t_Complex c);
 int		julia_set_iteration(t_Complex z, t_Complex c, int maxIterations);
-void	generate_julia_set(void *mlx, void *win);
+void	generate_julia_set(void *mlx, void *win, t_Img img);
 int		select_color(int iterations, int max_iterations);
 void	first_aux(int *iterations, int *red, int *green, int *blue);
 void	second_aux(int *iterations, int *red, int *green);
 int		rgb_to_hex(int red, int green, int blue);
 int		go_exit(int keycode, void *param);
 int		go_exit_cross(void *param);
+void	init_img(t_Img *img);
+void	put_pixel_in_img(t_Img *img, int x, int y, int color);
+
+# ifndef WIDTH
+#  define WIDTH 1000
+# endif
+# ifndef HEIGHT
+#  define HEIGHT 1000
+# endif
 
 #endif

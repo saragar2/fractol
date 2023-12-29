@@ -35,13 +35,13 @@ int	julia_set_iteration(t_Complex z, t_Complex c, int maxIterations)
 	return (iterations);
 }
 
-void	generate_julia_set(void *mlx, void *win)
+void	generate_julia_set(void *mlx, void *win, t_Img img)
 {
 	t_Mandm		g;
 	t_Complex	z;
 	t_Complex	c;
 
-	g = (t_Mandm){-2.0, 2.0, -2.0, 2.0, 1000, 1000, 0, 0, 0, 0, 0, 0, 0};
+	g = (t_Mandm){-2.0, 2.0, -2.0, 2.0, HEIGHT, WIDTH, 0, 0, 0, 0, 0, 0, 0};
 	g.max_iterations = 150;
 	g.y = 0;
 	while (g.y < g.height)
@@ -52,10 +52,10 @@ void	generate_julia_set(void *mlx, void *win)
 			g.real_part = g.xmin + g.x * (g.xmax - g.xmin) / (g.width - 1);
 			g.imag_part = g.ymin + g.y * (g.ymax - g.ymin) / (g.height - 1);
 			z = (t_Complex){g.real_part, g.imag_part};
-			c = (t_Complex){-0.759, 0.132};
+			c = (t_Complex){-0.726, 0.162};
 			g.iterations = julia_set_iteration(z, c, g.max_iterations);
 			g.color = select_color(g.iterations, g.max_iterations);
-			mlx_pixel_put(mlx, win, g.x++, g.y, g.color);
+			put_pixel_in_img(&img, g.x++, g.y, g.color);
 		}
 		g.y++;
 	}
