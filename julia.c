@@ -52,10 +52,10 @@ void	generate_julia_set(t_3d d)
 			g.real_part = g.xmin + g.x * (g.xmax - g.xmin) / (g.width - 1);
 			g.imag_part = g.ymin + g.y * (g.ymax - g.ymin) / (g.height - 1);
 			z = (t_Complex){g.real_part, g.imag_part};
-			c = (t_Complex){-0.726, 0.162};
+			c = (t_Complex){0.346, 0.523};
 			g.iterations = julia_set_iteration(z, c, g.max_iterations);
 			g.color = select_color(g.iterations, g.max_iterations);
-			put_pixel_in_img(&d, g.x++, g.y, g.color);
+			put_pixel_in_img(&d, WIDTH - g.x++, g.y, g.color);
 		}
 		g.y++;
 	}

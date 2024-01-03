@@ -28,6 +28,6 @@ void	init_img(t_3d *d)
 
 void	put_pixel_in_img(t_3d *d, int x, int y, int color)
 {
-	if (x >= 0 && y >= 0 && x < WIDTH && y < HEIGHT)
+	if (x > 0 && y >= 0 && x <= WIDTH && y < HEIGHT)
 		*(int *)&d->img.data[(x * d->img.bpp >> 3) + (y * d->img.sizeline)] = color;
 }
