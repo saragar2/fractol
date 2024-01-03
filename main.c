@@ -44,16 +44,17 @@ int	code_error(int argc, char **argv)
 
 int main(int argc, char *argv[])
 {
-	t_Img	img;
+	//t_Image	img;
+	t_3d	d;
 
 	if (code_error(argc, argv) == 0)
 		return (0);
-	img.mlx = mlx_init();
+	d.img.mlx = mlx_init();
 	if (strcmp(argv[1], "julia") == 0) //---HAY UN STRCMP
 	{
-		img.win = mlx_new_window(img.mlx, WIDTH, HEIGHT, "Conjunto de Julia");
-		init_img(&img);
-		generate_julia_set(img.mlx, img.win, img);
+		d.img.win = mlx_new_window(d.img.mlx, WIDTH, HEIGHT, "Conjunto de Julia");
+		init_img(&d);
+		generate_julia_set(d);
 	}
 	return (0);
 }

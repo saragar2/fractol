@@ -12,28 +12,22 @@
 
 #include "fractol.h"
 
-void	init_img(t_Img *img)
+void	init_img(t_3d *d)
 {
 	int		bpp;
 	int		sizeline;
 	int		endian;
 
-	img->image = mlx_new_image(img->mlx, WIDTH, HEIGHT);
-	img->data = mlx_get_data_addr(img->image, &bpp, &sizeline, &endian);
-	img->bpp = bpp;
-	img->sizeline = sizeline;
-	img->endian = endian;
+	
+	d->img.image = mlx_new_image(d->img.mlx, WIDTH, HEIGHT);
+	d->img.data = mlx_get_data_addr(d->img.image, &bpp, &sizeline, &endian);
+	d->img.bpp = bpp;
+	d->img.sizeline = sizeline;
+	d->img.endian = endian;
 }
 
-/*
-** Put pixel inside the image.
-** shifting right 3 bits (>> 3) is a binary operation equivalent to (/ 8).
-** casting the memory address into int * and then dereferencing is to speed up
-*/
-
-void	put_pixel_in_img(t_Img *img, int x, int y, int color)
+void	put_pixel_in_img(t_3d *d, int x, int y, int color)
 {
 	if (x >= 0 && y >= 0 && x < WIDTH && y < HEIGHT)
-		*(int *)&img->data[(x * img->bpp >> 3) +
-			(y * img->sizeline)] = color;
+		*(int *)&d->img.data[(x * d->img.bpp >> 3) + (y * d->img.sizeline)] = color;
 }
