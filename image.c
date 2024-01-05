@@ -31,3 +31,17 @@ void	put_pixel_in_img(t_3d *d, int x, int y, int color)
 	if (x > 0 && y >= 0 && x <= WIDTH && y < HEIGHT)
 		*(int *)&d->img.data[(x * d->img.bpp >> 3) + (y * d->img.sizeline)] = color;
 }
+
+int	new_zoom(int button, int x, int y, t_3d *d)
+{
+	(void)x;
+	(void)y;
+	if (!d->img.zoom)
+		d->img.zoom = 1;
+	if (button == 4)
+		d->img.zoom *= 1.1;
+	else if (button == 5)
+		d->img.zoom *= 0.9;
+	generate_julia_set(*d);
+	return (0);
+}

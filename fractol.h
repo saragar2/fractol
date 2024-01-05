@@ -57,6 +57,7 @@ typedef struct s_Image
 	int		bpp;
 	int		sizeline;
 	int		endian;
+	double	zoom;
 }t_Image;
 
 typedef struct		s_3d
@@ -75,6 +76,7 @@ int		go_exit(int keycode, void *param);
 int		go_exit_cross(void *param);
 void	init_img(t_3d *d);
 void	put_pixel_in_img(t_3d *d, int x, int y, int color);
+int		new_zoom(int button, int x, int y, t_3d *d);
 
 # ifndef WIDTH
 #  define WIDTH 1000
