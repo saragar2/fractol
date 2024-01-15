@@ -41,7 +41,12 @@ void	generate_julia_set(t_3d d)
 	t_Complex	z;
 	t_Complex	c;
 
-	g = (t_Mandm){-2.0, 2.0, -2.0, 2.0, WIDTH * d.img.zoom, HEIGHT * d.img.zoom, 0, 0, 0, 0, 0, 0, 0};
+	g = (t_Mandm){-2.0, 2.0, -2.0, 2.0, WIDTH, HEIGHT, 0, 0, 0, 0, 0, 0, 0};
+
+	g.x /= d.img.zoom;
+    g.y /= d.img.zoom;
+
+	printf("%f", g.xmin);
 	g.max_iterations = 150;
 	g.y = 0;
 	while (g.y < g.height)
