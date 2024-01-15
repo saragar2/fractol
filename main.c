@@ -29,7 +29,7 @@ int go_exit_cross(void *param)
 
 int	code_error(int argc, char **argv)
 {
-	if (argc == 1)
+	if (argc != 2)
 	{
 		printf("Utiliza \"julia\" o \"mandelbrot\" para ejecutar el programa");
 		return (0);
@@ -56,11 +56,16 @@ int main(int argc, char *argv[])
 		d.img.win = mlx_new_window(d.img.mlx, WIDTH, HEIGHT, "Conjunto de Julia");
 		init_img(&d);
 		generate_julia_set(d);
-		
-		mlx_mouse_hook(d.img.win, new_zoom, &d);
-		mlx_key_hook(d.img.win, go_exit, (void *)d.img.mlx);
-		mlx_hook(d.img.win, 17, 0, go_exit_cross, (void *)d.img.mlx);
-		mlx_loop(d.img.mlx);
 	}
+	else
+	{
+		d.img.win = mlx_new_window(d.img.mlx, WIDTH, HEIGHT, "Conjunto de Mandelbrot");
+		init_img(&d);
+		generate_mandel_set(d);
+	}
+	mlx_mouse_hook(d.img.win, new_zoom, &d);
+	mlx_key_hook(d.img.win, go_exit, (void *)d.img.mlx);
+	mlx_hook(d.img.win, 17, 0, go_exit_cross, (void *)d.img.mlx);
+	mlx_loop(d.img.mlx);
 	return (0);
 }

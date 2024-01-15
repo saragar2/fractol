@@ -12,9 +12,9 @@
 
 #include "fractol.h"
 
-double	complex_magnitude_squared(t_Complex c)
+double	complex_magnitude_squared(t_Complex z)
 {
-	return (c.real * c.real + c.imag * c.imag);
+	return (z.real * z.real + z.imag * z.imag);
 }
 
 int	julia_set_iteration(t_Complex z, t_Complex c, int maxIterations)
@@ -43,10 +43,6 @@ void	generate_julia_set(t_3d d)
 
 	g = (t_Mandm){-2.0, 2.0, -2.0, 2.0, WIDTH, HEIGHT, 0, 0, 0, 0, 0, 0, 0};
 
-	// g.x += d.img.zoom;
-    // g.y += d.img.zoom;
-	printf("%f\n", d.img.zoom);
-
 	g.max_iterations = 150;
 	g.y = 0;
 	while (g.y < g.height)
@@ -59,7 +55,7 @@ void	generate_julia_set(t_3d d)
 			g.imag_part = g.ymin + g.y * (g.ymax - g.ymin) / (g.height - 1);
 			g.imag_part *= d.img.zoom;
 			z = (t_Complex){g.real_part, g.imag_part};
-			c = (t_Complex){-0.726, 0.248};
+			c = (t_Complex){-0.211, 0.793};
 			g.iterations = julia_set_iteration(z, c, g.max_iterations);
 			g.color = select_color(g.iterations, g.max_iterations);
 			put_pixel_in_img(&d, g.width - g.x++, g.y, g.color);

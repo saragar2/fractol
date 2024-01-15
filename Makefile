@@ -1,7 +1,7 @@
 
 NAME = fractol.a
 
-SOURCES = main.c julia.c color.c image.c
+SOURCES = main.c julia.c color.c image.c mandelbrot.c
 
 OBJECTS = $(SOURCES:.c=.o)
 

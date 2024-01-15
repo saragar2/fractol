@@ -65,7 +65,7 @@ typedef struct		s_3d
 	t_Image			img;
 }t_3d;
 
-double	complex_magnitude_squared(t_Complex c);
+double	complex_magnitude_squared(t_Complex z);
 int		julia_set_iteration(t_Complex z, t_Complex c, int maxIterations);
 void	generate_julia_set(t_3d d);
 int		select_color(int iterations, int max_iterations);
@@ -77,6 +77,8 @@ int		go_exit_cross(void *param);
 void	init_img(t_3d *d);
 void	put_pixel_in_img(t_3d *d, int x, int y, int color);
 int		new_zoom(int button, int x, int y, t_3d *d);
+int		mandel_set_iteration(t_Complex z, int c, int maxIterations);
+void	generate_mandel_set(t_3d d);
 
 # ifndef WIDTH
 #  define WIDTH 1000
