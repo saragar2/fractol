@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 		d.img.win = mlx_new_window(d.img.mlx, WIDTH, HEIGHT, "Conjunto de Julia");
 		init_img(&d);
 		generate_julia_set(d);
-		mlx_put_image_to_window(d.img.mlx, d.img.win, d.img.image, 0, 0);
+		
 		mlx_mouse_hook(d.img.win, new_zoom, &d);
 		mlx_key_hook(d.img.win, go_exit, (void *)d.img.mlx);
 		mlx_hook(d.img.win, 17, 0, go_exit_cross, (void *)d.img.mlx);

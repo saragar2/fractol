@@ -44,7 +44,7 @@ int	new_zoom(int button, int x, int y, t_3d *d)
 	else if (button == 5)
 		{printf("5\n\n\n");
 		d->img.zoom *= 0.9;}
-	mlx_clear_window(d->img.mlx, d->img.win);
+	//mlx_clear_window(d->img.mlx, d->img.win);
 	generate_julia_set(*d);
 	return (0);
 }
