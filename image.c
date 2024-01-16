@@ -11,38 +11,42 @@
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include <string.h>
 
-void	init_img(t_3d *d)
+void	init_img(t_Image *img)
 {
 	int		bpp;
 	int		sizeline;
 	int		endian;
 
 	
-	d->img.image = mlx_new_image(d->img.mlx, WIDTH, HEIGHT);
-	d->img.data = mlx_get_data_addr(d->img.image, &bpp, &sizeline, &endian);
-	d->img.bpp = bpp;
-	d->img.sizeline = sizeline;
-	d->img.endian = endian;
+	img->image = mlx_new_image(img->mlx, WIDTH, HEIGHT);
+	img->data = mlx_get_data_addr(img->image, &bpp, &sizeline, &endian);
+	img->bpp = bpp;
+	img->sizeline = sizeline;
+	img->endian = endian;
 }
 
-void	put_pixel_in_img(t_3d *d, int x, int y, int color)
+void	put_pixel_in_img(t_Image *img, int x, int y, int color)
 {
 	if (x > 0 && y >= 0 && x <= WIDTH && y < HEIGHT)
-		*(int *)&d->img.data[(x * d->img.bpp >> 3) + (y * d->img.sizeline)] = color;
+		*(int *)&img->data[(x * img->bpp >> 3) + (y * img->sizeline)] = color;
 }
 
-int	new_zoom(int button, int x, int y, t_3d *d)
+int	new_zoom(int button, int x, int y, t_Image *img)
 {
 	(void)x;
 	(void)y;
-	if (!d->img.zoom)
-		d->img.zoom = 1;
+	if (!img->zoom)
+		img->zoom = 1;
 	if (button == 4)
-		d->img.zoom *= 1.2;
+		img->zoom *= 1.2;
 	else if (button == 5)
-		d->img.zoom *= 0.8;
-	mlx_clear_window(d->img.mlx, d->img.win);
-	generate_julia_set(*d);
+		img->zoom *= 0.8;
+	mlx_clear_window(img->mlx, img->win);
+	if (strcmp(img->type, "julia") == 0) //------HAY UN STRCMP
+		generate_julia_set(*img);
+	else
+		generate_mandel_set(*img);
 	return (0);
 }

@@ -44,28 +44,28 @@ int	code_error(int argc, char **argv)
 
 int main(int argc, char *argv[])
 {
-	//t_Image	img;
-	t_3d	d;
+	t_Image	img;
 
-	d.img.zoom = 1.0;
+	img.type = argv[1];
+	img.zoom = 1.0;
 	if (code_error(argc, argv) == 0)
 		return (0);
-	d.img.mlx = mlx_init();
-	if (strcmp(argv[1], "julia") == 0) //---HAY UN STRCMP
+	img.mlx = mlx_init();
+	if (strcmp(img.type, "julia") == 0) //---HAY UN STRCMP
 	{
-		d.img.win = mlx_new_window(d.img.mlx, WIDTH, HEIGHT, "Conjunto de Julia");
-		init_img(&d);
-		generate_julia_set(d);
+		img.win = mlx_new_window(img.mlx, WIDTH, HEIGHT, "Conjunto de Julia");
+		init_img(&img);
+		generate_julia_set(img);
 	}
 	else
 	{
-		d.img.win = mlx_new_window(d.img.mlx, WIDTH, HEIGHT, "Conjunto de Mandelbrot");
-		init_img(&d);
-		generate_mandel_set(d);
+		img.win = mlx_new_window(img.mlx, WIDTH, HEIGHT, "Conjunto de Mandelbrot");
+		init_img(&img);
+		generate_mandel_set(img);
 	}
-	mlx_mouse_hook(d.img.win, new_zoom, &d);
-	mlx_key_hook(d.img.win, go_exit, (void *)d.img.mlx);
-	mlx_hook(d.img.win, 17, 0, go_exit_cross, (void *)d.img.mlx);
-	mlx_loop(d.img.mlx);
+	mlx_mouse_hook(img.win, new_zoom, &img);
+	mlx_key_hook(img.win, go_exit, (void *)img.mlx);
+	mlx_hook(img.win, 17, 0, go_exit_cross, (void *)img.mlx);
+	mlx_loop(img.mlx);
 	return (0);
 }
