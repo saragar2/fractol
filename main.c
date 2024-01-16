@@ -31,12 +31,12 @@ int	code_error(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		printf("Utiliza \"julia\" o \"mandelbrot\" para ejecutar el programa");
+		fractol_printf("Utiliza \"julia\" o \"mandelbrot\" para ejecutar el programa");
 		return (0);
 	}
-	if (strcmp(argv[1], "julia") != 0 && strcmp(argv[1], "mandelbrot") != 0) //---HAY UN STRCMP
+	if (fractol_strcmp(argv[1], "julia") != 0 && fractol_strcmp(argv[1], "mandelbrot") != 0)
 	{
-		printf("Parámetro no válido. Utiliza \"julia\" o \"mandelbrot\""); //---HAY UN PRINTF
+		fractol_printf("Parámetro no válido. Utiliza \"julia\" o \"mandelbrot\"");
 		return (0);
 	}
 	return (1);
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 	if (code_error(argc, argv) == 0)
 		return (0);
 	img.mlx = mlx_init();
-	if (strcmp(img.type, "julia") == 0) //---HAY UN STRCMP
+	if (fractol_strcmp(img.type, "julia") == 0)
 	{
 		img.win = mlx_new_window(img.mlx, WIDTH, HEIGHT, "Conjunto de Julia");
 		init_img(&img);

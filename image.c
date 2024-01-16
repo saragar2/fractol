@@ -44,7 +44,7 @@ int	new_zoom(int button, int x, int y, t_Image *img)
 	else if (button == 5)
 		img->zoom *= 0.8;
 	mlx_clear_window(img->mlx, img->win);
-	if (strcmp(img->type, "julia") == 0) //------HAY UN STRCMP
+	if (fractol_strcmp(img->type, "julia") == 0)
 		generate_julia_set(*img);
 	else
 		generate_mandel_set(*img);
