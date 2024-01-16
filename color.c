@@ -11,13 +11,7 @@
 /* ************************************************************************** */
 
 #include "fractol.h"
-/* @MIGUEMOLIAGA
-int	create_trgb(int t, int r)
-{
-	return (t << 24 | ((r * 2) % 256) << 16
-		| ((r * 5) % 256) << 8 | (r * 3) % 256);
-}
-*/
+
 int	rgb_to_hex(int red, int green, int blue)
 {
 	int	hex_color;
@@ -95,7 +89,7 @@ int	select_color(int iterations, int max_iterations)
 	if (iterations == max_iterations)
 		return (col.final_color = rgb_to_hex(col.red, col.green, col.blue));
 	iterations *= 15;
-	if (iterations <= 255) //QUITAR PARA QUE EL FONDO SEA ROJO
+	if (iterations <= 255)
 		return (col.final_color = rgb_to_hex(iterations, col.green, col.blue));
 	while (iterations >= 0)
 	{
@@ -115,22 +109,3 @@ int	select_color(int iterations, int max_iterations)
 	}
 	return (col.final_color = rgb_to_hex(col.red, col.green, col.blue));
 }
-
-/*int select_color(int iterations, int max_iterations)
-{
-    int color;
-	int	basecolor;
-    
-	basecolor = 0xff0000;
-    if (iterations == max_iterations)
-        color = 0x000000;
-	else if (iterations == 0)
-		color = basecolor;
-    else
-	{
-		color = (iterations * 0x000100 * 20) + basecolor;
-		if (basecolor >= 0xff0000 && color >= 0xffffff)
-			color = color - (iterations * 0x010000 * 2);
-	}
-    return (color);
-}*/

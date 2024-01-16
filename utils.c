@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: saragar2 <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/16 21:02:25 by saragar2          #+#    #+#             */
+/*   Updated: 2024/01/16 21:02:29 by saragar2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-void	fractol_printf(char const *str)
+void	f_printf(char const *str)
 {
 	while (*str != '\0')
 		write(1, str++, 1);
 }
 
-int	fractol_strcmp(const char *s1, const char *s2)
+int	f_strcmp(const char *s1, const char *s2)
 {
 	int	cont;
 

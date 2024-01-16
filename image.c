@@ -19,7 +19,6 @@ void	init_img(t_Image *img)
 	int		sizeline;
 	int		endian;
 
-	
 	img->image = mlx_new_image(img->mlx, WIDTH, HEIGHT);
 	img->data = mlx_get_data_addr(img->image, &bpp, &sizeline, &endian);
 	img->bpp = bpp;
@@ -44,7 +43,7 @@ int	new_zoom(int button, int x, int y, t_Image *img)
 	else if (button == 5)
 		img->zoom *= 0.8;
 	mlx_clear_window(img->mlx, img->win);
-	if (fractol_strcmp(img->type, "julia") == 0)
+	if (f_strcmp(img->type, "julia") == 0)
 		generate_julia_set(*img);
 	else
 		generate_mandel_set(*img);

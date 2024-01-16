@@ -37,7 +37,6 @@ void	generate_mandel_set(t_Image img)
 	int			c;
 
 	g = (t_Mandm){-2.0, 2.0, -2.0, 2.0, WIDTH, HEIGHT, 0, 0, 0, 0, 0, 0, 0};
-
 	g.max_iterations = 150;
 	g.y = 0;
 	while (g.y < g.height)

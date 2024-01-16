@@ -13,14 +13,15 @@
 #include "fractol.h"
 #include <string.h>
 
-int go_exit(int keycode, void *param)
+int	go_exit(int keycode, void *param)
 {
 	(void)param;
 	if (keycode == 53)
-    	exit(0);
-    return 0;
+		exit(0);
+	return (0);
 }
-int go_exit_cross(void *param)
+
+int	go_exit_cross(void *param)
 {
 	(void)param;
 	exit(0);
@@ -31,18 +32,18 @@ int	code_error(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		fractol_printf("Utiliza \"julia\" o \"mandelbrot\" para ejecutar el programa");
+		f_printf("Utiliza \"julia\" o \"mandelbrot\"");
 		return (0);
 	}
-	if (fractol_strcmp(argv[1], "julia") != 0 && fractol_strcmp(argv[1], "mandelbrot") != 0)
+	if (f_strcmp(argv[1], "julia") != 0 && f_strcmp(argv[1], "mandelbrot") != 0)
 	{
-		fractol_printf("Parámetro no válido. Utiliza \"julia\" o \"mandelbrot\"");
+		f_printf("Utiliza \"julia\" o \"mandelbrot\"");
 		return (0);
 	}
 	return (1);
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_Image	img;
 
@@ -51,15 +52,15 @@ int main(int argc, char *argv[])
 	if (code_error(argc, argv) == 0)
 		return (0);
 	img.mlx = mlx_init();
-	if (fractol_strcmp(img.type, "julia") == 0)
+	if (f_strcmp(img.type, "julia") == 0)
 	{
-		img.win = mlx_new_window(img.mlx, WIDTH, HEIGHT, "Conjunto de Julia");
+		img.win = mlx_new_window(img.mlx, WIDTH, HEIGHT, "Julia");
 		init_img(&img);
 		generate_julia_set(img);
 	}
 	else
 	{
-		img.win = mlx_new_window(img.mlx, WIDTH, HEIGHT, "Conjunto de Mandelbrot");
+		img.win = mlx_new_window(img.mlx, WIDTH, HEIGHT, "Mandelbrot");
 		init_img(&img);
 		generate_mandel_set(img);
 	}

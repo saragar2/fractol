@@ -75,8 +75,8 @@ void	put_pixel_in_img(t_Image *img, int x, int y, int color);
 int		new_zoom(int button, int x, int y, t_Image *img);
 int		mandel_set_iteration(t_Complex z, int c, int maxIterations);
 void	generate_mandel_set(t_Image img);
-void	fractol_printf(char const *str);
-int		fractol_strcmp(const char *s1, const char *s2);
+void	f_printf(char const *str);
+int		f_strcmp(const char *s1, const char *s2);
 
 # ifndef WIDTH
 #  define WIDTH 1000
