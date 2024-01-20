@@ -58,6 +58,7 @@ typedef struct s_Image
 	int		sizeline;
 	int		endian;
 	double	zoom;
+	double	move;
 	char	*type;
 }t_Image;
 
@@ -73,10 +74,11 @@ int		go_exit_cross(void *param);
 void	init_img(t_Image *img);
 void	put_pixel_in_img(t_Image *img, int x, int y, int color);
 int		new_zoom(int button, int x, int y, t_Image *img);
-int		mandel_set_iteration(t_Complex z, int c, int maxIterations);
+int		mandel_set_iteration(t_Complex z, t_Complex c, int maxIterations);
 void	generate_mandel_set(t_Image img);
 void	f_printf(char const *str);
 int		f_strcmp(const char *s1, const char *s2);
+int		move_left_right(int keycode, t_Image *img);
 
 # ifndef WIDTH
 #  define WIDTH 1000

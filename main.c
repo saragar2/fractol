@@ -65,6 +65,7 @@ int	main(int argc, char *argv[])
 		generate_mandel_set(img);
 	}
 	mlx_mouse_hook(img.win, new_zoom, &img);
+	mlx_key_hook(img.win, move_left_right, &img);
 	mlx_key_hook(img.win, go_exit, (void *)img.mlx);
 	mlx_hook(img.win, 17, 0, go_exit_cross, (void *)img.mlx);
 	mlx_loop(img.mlx);

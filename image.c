@@ -32,6 +32,26 @@ void	put_pixel_in_img(t_Image *img, int x, int y, int color)
 		*(int *)&img->data[(x * img->bpp >> 3) + (y * img->sizeline)] = color;
 }
 
+int	move_left_right(int keycode, t_Image *img)
+{
+	f_printf("hola");
+	if (!img->move)
+		//img->move = 0;
+		f_printf("empieza\n\n\n");
+	if (keycode == 123)
+		//img->move -= 0.2;
+		f_printf("izq\n\n\n");
+	else if (keycode == 124)
+		//img->move += 0.2;
+		f_printf("der\n\n\n");
+	mlx_clear_window(img->mlx, img->win);
+	if (f_strcmp(img->type, "julia") == 0)
+		generate_julia_set(*img);
+	else
+		generate_mandel_set(*img);
+	return (0);
+}
+
 int	new_zoom(int button, int x, int y, t_Image *img)
 {
 	(void)x;

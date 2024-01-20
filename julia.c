@@ -41,7 +41,7 @@ void	generate_julia_set(t_Image img)
 	t_Complex	z;
 	t_Complex	c;
 
-	g = (t_Mandm){-2.0, 2.0, -2.0, 2.0, WIDTH, HEIGHT, 0, 0, 0, 0, 0, 0, 0};
+	g = (t_Mandm){-2.0 + img.move, 2.0 + img.move, -2.0, 2.0, WIDTH, HEIGHT, 0, 0, 0, 0, 0, 0, 0};
 	g.max_iterations = 150;
 	g.y = 0;
 	while (g.y < g.height)
@@ -54,7 +54,7 @@ void	generate_julia_set(t_Image img)
 			g.imag_part = g.ymin + g.y * (g.ymax - g.ymin) / (g.height - 1);
 			g.imag_part *= img.zoom;
 			z = (t_Complex){g.real_part, g.imag_part};
-			c = (t_Complex){-0.211, 0.793};
+			c = (t_Complex){-0.793, 0.161};
 			g.iterations = julia_set_iteration(z, c, g.max_iterations);
 			g.color = select_color(g.iterations, g.max_iterations);
 			put_pixel_in_img(&img, g.width - g.x++, g.y, g.color);

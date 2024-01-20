@@ -1,5 +1,5 @@
 
-NAME = fractol.a
+NAME = fractol
 
 SOURCES = main.c julia.c color.c image.c mandelbrot.c utils.c
 
