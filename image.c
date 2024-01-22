@@ -34,16 +34,18 @@ void	put_pixel_in_img(t_Image *img, int x, int y, int color)
 
 int	move_left_right(int keycode, t_Image *img)
 {
-	f_printf("hola");
-	if (!img->move)
-		//img->move = 0;
-		f_printf("empieza\n\n\n");
+	if (!img->moveX)
+		img->moveX = 0;
+	if (!img->moveY)
+		img->moveY = 0;
 	if (keycode == 123)
-		//img->move -= 0.2;
-		f_printf("izq\n\n\n");
+		img->moveX -= 100;
 	else if (keycode == 124)
-		//img->move += 0.2;
-		f_printf("der\n\n\n");
+		img->moveX += 100;
+	else if (keycode == 125)
+		img->moveY -= 100;
+	else if (keycode == 126)
+		img->moveY += 100;
 	mlx_clear_window(img->mlx, img->win);
 	if (f_strcmp(img->type, "julia") == 0)
 		generate_julia_set(*img);
@@ -59,7 +61,9 @@ int	new_zoom(int button, int x, int y, t_Image *img)
 	if (!img->zoom)
 		img->zoom = 1;
 	if (button == 4)
+	{
 		img->zoom *= 1.2;
+	}
 	else if (button == 5)
 		img->zoom *= 0.8;
 	mlx_clear_window(img->mlx, img->win);

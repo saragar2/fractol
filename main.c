@@ -13,11 +13,13 @@
 #include "fractol.h"
 #include <string.h>
 
-int	go_exit(int keycode, void *param)
+int	key_control(int keycode, void *param)
 {
 	(void)param;
 	if (keycode == 53)
 		exit(0);
+	if (keycode == 123 || keycode == 124 || keycode == 125 || keycode == 126)
+		move_left_right(keycode, param);
 	return (0);
 }
 
@@ -65,8 +67,7 @@ int	main(int argc, char *argv[])
 		generate_mandel_set(img);
 	}
 	mlx_mouse_hook(img.win, new_zoom, &img);
-	mlx_key_hook(img.win, move_left_right, &img);
-	mlx_key_hook(img.win, go_exit, (void *)img.mlx);
+	mlx_key_hook(img.win, key_control, &img);
 	mlx_hook(img.win, 17, 0, go_exit_cross, (void *)img.mlx);
 	mlx_loop(img.mlx);
 	return (0);
