@@ -35,17 +35,17 @@ void	put_pixel_in_img(t_Image *img, int x, int y, int color)
 int	move_left_right(int keycode, t_Image *img)
 {
 	if (!img->moveX)
-		img->moveX = 0;
+		img->moveX = 0.05;
 	if (!img->moveY)
-		img->moveY = 0;
+		img->moveY = 0.05;
 	if (keycode == 123)
-		img->moveX -= 100;
+		img->moveX -= 0.05 * img->zoom;
 	else if (keycode == 124)
-		img->moveX += 100;
+		img->moveX += 0.05 * img->zoom;
 	else if (keycode == 125)
-		img->moveY -= 100;
+		img->moveY -= 0.05 * img->zoom;
 	else if (keycode == 126)
-		img->moveY += 100;
+		img->moveY += 0.05 * img->zoom;
 	mlx_clear_window(img->mlx, img->win);
 	if (f_strcmp(img->type, "julia") == 0)
 		generate_julia_set(*img);
@@ -60,10 +60,9 @@ int	new_zoom(int button, int x, int y, t_Image *img)
 	(void)y;
 	if (!img->zoom)
 		img->zoom = 1;
+	img->old_zoom = img->zoom;
 	if (button == 4)
-	{
 		img->zoom *= 1.2;
-	}
 	else if (button == 5)
 		img->zoom *= 0.8;
 	mlx_clear_window(img->mlx, img->win);
@@ -72,4 +71,13 @@ int	new_zoom(int button, int x, int y, t_Image *img)
 	else
 		generate_mandel_set(*img);
 	return (0);
+}
+
+void	apply_zoom(t_Image *img, t_Mandm *g)
+{
+	if (img->old_zoom != img->zoom)
+	{
+		g->real_part -= img->moveX;
+		g->imag_part -= img->moveY;
+	}
 }

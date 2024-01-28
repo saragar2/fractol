@@ -17,7 +17,7 @@ double	complex_magnitude_squared(t_Complex z)
 	return (z.real * z.real + z.imag * z.imag);
 }
 
-int	julia_set_iteration(t_Complex z, t_Complex c, int maxIterations)
+int	set_iteration(t_Complex z, t_Complex c, int maxIterations)
 {
 	int		iterations;
 	double	temp_real;
@@ -41,9 +41,7 @@ void	generate_julia_set(t_Image img)
 	t_Complex	z;
 	t_Complex	c;
 
-	g = (t_Mandm){-2.0, 2.0 , -2.0, 2.0, WIDTH, HEIGHT, 0, 0, 0, 0, 0, 0, 0};
-	g.max_iterations = 150;
-	g.y = 0;
+	g = (t_Mandm){-2.0, 2.0 , -2.0, 2.0, WIDTH, HEIGHT, 150, 0, 0, 0, 0, 0};
 	while (g.y < g.height)
 	{
 		g.x = 1;
@@ -53,11 +51,12 @@ void	generate_julia_set(t_Image img)
 			g.real_part *= img.zoom;
 			g.imag_part = g.ymin + (g.y - img.moveY) * (g.ymax - g.ymin) / (g.height - 1);
 			g.imag_part *= img.zoom;
+			apply_zoom(&img, &g);
 			z = (t_Complex){g.real_part, g.imag_part};
-			c = (t_Complex){-0.793, 0.161};
-			g.iterations = julia_set_iteration(z, c, g.max_iterations);
-			g.color = select_color(g.iterations, g.max_iterations);
-			put_pixel_in_img(&img, g.width - g.x++, g.y, g.color);
+			c = (t_Complex){-0.484, 0.597};
+			g.iterations = set_iteration(z, c, g.max_iterations);
+			img.color = select_color(g.iterations, g.max_iterations);
+			put_pixel_in_img(&img, g.width - g.x++, g.y, img.color);
 		}
 		g.y++;
 	}
