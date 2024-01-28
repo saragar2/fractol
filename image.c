@@ -34,18 +34,18 @@ void	put_pixel_in_img(t_Image *img, int x, int y, int color)
 
 int	move_left_right(int keycode, t_Image *img)
 {
-	if (!img->moveX)
-		img->moveX = 0.05;
-	if (!img->moveY)
-		img->moveY = 0.05;
+	if (!img->mx)
+		img->mx = 0;
+	if (!img->my)
+		img->my = 0;
 	if (keycode == 123)
-		img->moveX -= 0.05 * img->zoom;
+		img->mx += 0.5 * img->zoom;
 	else if (keycode == 124)
-		img->moveX += 0.05 * img->zoom;
+		img->mx -= 0.5 * img->zoom;
 	else if (keycode == 125)
-		img->moveY -= 0.05 * img->zoom;
+		img->my -= 0.5 * img->zoom;
 	else if (keycode == 126)
-		img->moveY += 0.05 * img->zoom;
+		img->my += 0.5 * img->zoom;
 	mlx_clear_window(img->mlx, img->win);
 	if (f_strcmp(img->type, "julia") == 0)
 		generate_julia_set(*img);
@@ -77,7 +77,7 @@ void	apply_zoom(t_Image *img, t_Mandm *g)
 {
 	if (img->old_zoom != img->zoom)
 	{
-		g->real_part -= img->moveX;
-		g->imag_part -= img->moveY;
+		g->r_p -= img->mx;
+		g->i_p -= img->my;
 	}
 }

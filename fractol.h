@@ -22,7 +22,7 @@ typedef struct s_Complex
 {
 	double	real;
 	double	imag;
-}t_Complex;
+}	t_Complex;
 
 typedef struct s_Mandm
 {
@@ -30,15 +30,13 @@ typedef struct s_Mandm
 	double		xmax;
 	double		ymin;
 	double		ymax;
-	int			width;
-	int			height;
 	int			max_iterations;
 	int			iterations;
-	double		real_part;
-	double		imag_part;
+	double		r_p;
+	double		i_p;
 	int			y;
 	int			x;
-}t_Mandm;
+}	t_Mandm;
 
 typedef struct s_Rgb
 {
@@ -46,7 +44,7 @@ typedef struct s_Rgb
 	int	green;
 	int	blue;
 	int	final_color;
-}t_Rgb;
+}	t_Rgb;
 
 typedef struct s_Image
 {
@@ -60,11 +58,10 @@ typedef struct s_Image
 	int		endian;
 	double	zoom;
 	double	old_zoom;
-	double	moveX;
-	double	moveY;
+	double	mx;
+	double	my;
 	char	*type;
-	struct t_Mandm	*mand;
-}t_Image;
+}	t_Image;
 
 double	complex_magnitude_squared(t_Complex z);
 int		set_iteration(t_Complex z, t_Complex c, int maxIterations);
@@ -86,10 +83,10 @@ void	invert_color(t_Image *img);
 void	apply_zoom(t_Image *img, t_Mandm *g);
 
 # ifndef WIDTH
-#  define WIDTH 1000
+#  define WIDTH 500
 # endif
 # ifndef HEIGHT
-#  define HEIGHT 1000
+#  define HEIGHT 500
 # endif
 
 #endif

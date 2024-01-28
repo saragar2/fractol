@@ -18,17 +18,18 @@ void	generate_mandel_set(t_Image img)
 	t_Complex	z;
 	t_Complex	c;
 
-	g = (t_Mandm){-2.0, 2.0, -2.0, 2.0, WIDTH, HEIGHT, 150, 0, 0, 0, 0, 0};
-	while (g.y < g.height)
+	g = (t_Mandm){-2.0, 2.0, -2.0, 2.0, 150, 0, 0, 0, 0, 0};
+	while (g.y < HEIGHT)
 	{
 		g.x = 1;
-		while (g.x < g.width)
+		while (g.x < WIDTH)
 		{
-			g.real_part = g.xmin + (g.x + img.moveX) * (g.xmax - g.xmin) / (g.width - 1);
-			g.real_part *= img.zoom;
-			g.imag_part = g.ymin + (g.y - img.moveY) * (g.ymax - g.ymin) / (g.height - 1);
-			g.imag_part *= img.zoom;
-			z = (t_Complex){g.real_part, g.imag_part};
+			g.r_p = g.xmin + (g.x - img.mx) * (g.xmax - g.xmin) / (WIDTH - 1);
+			g.r_p *= img.zoom;
+			g.i_p = g.ymin + (g.y - img.my) * (g.ymax - g.ymin) / (HEIGHT - 1);
+			g.i_p *= img.zoom;
+			apply_zoom(&img, &g);
+			z = (t_Complex){g.r_p, g.i_p};
 			c = z;
 			g.iterations = set_iteration(z, c, g.max_iterations);
 			img.color = select_color(g.iterations, g.max_iterations);
@@ -38,5 +39,3 @@ void	generate_mandel_set(t_Image img)
 	}
 	mlx_put_image_to_window(img.mlx, img.win, img.image, 0, 0);
 }
-
-
