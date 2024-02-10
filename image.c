@@ -65,6 +65,12 @@ int	new_zoom(int button, int x, int y, t_Image *img)
 		img->zoom *= 1.2;
 	else if (button == 5)
 		img->zoom *= 0.8;
+	else
+	{
+		img->zoom = 1;
+		img->mx = 0;
+		img->my = 0;
+	}
 	mlx_clear_window(img->mlx, img->win);
 	if (f_strcmp(img->type, "julia") == 0)
 		generate_julia_set(*img);
@@ -75,7 +81,7 @@ int	new_zoom(int button, int x, int y, t_Image *img)
 
 void	apply_zoom(t_Image *img, t_Mandm *g)
 {
-	if (img->old_zoom != img->zoom)
+	if (img->old_zoom != img->zoom || img->zoom == 1)
 	{
 		g->r_p -= img->mx;
 		g->i_p -= img->my;
