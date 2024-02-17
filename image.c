@@ -46,6 +46,7 @@ int	move_left_right(int keycode, t_Image *img)
 		img->my -= 0.5 * img->zoom;
 	else if (keycode == 126)
 		img->my += 0.5 * img->zoom;
+	change_color(keycode, img);
 	mlx_clear_window(img->mlx, img->win);
 	if (f_strcmp(img->type, "julia") == 0)
 		generate_julia_set(*img);
@@ -70,6 +71,7 @@ int	new_zoom(int button, int x, int y, t_Image *img)
 		img->zoom = 1;
 		img->mx = 0;
 		img->my = 0;
+		img->multip = 0;
 	}
 	mlx_clear_window(img->mlx, img->win);
 	if (f_strcmp(img->type, "julia") == 0)

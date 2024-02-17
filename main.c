@@ -15,10 +15,10 @@
 
 int	key_control(int keycode, void *param)
 {
-	(void)param;
 	if (keycode == 53)
 		exit(0);
-	if (keycode == 123 || keycode == 124 || keycode == 125 || keycode == 126)
+	if (keycode == 123 || keycode == 124 || keycode == 125 || keycode == 126 \
+	|| keycode == 69 || keycode == 78)
 		move_left_right(keycode, param);
 	return (0);
 }

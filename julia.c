@@ -55,7 +55,7 @@ void	generate_julia_set(t_Image img)
 			z = (t_Complex){g.r_p, g.i_p};
 			c = (t_Complex){-0.484, 0.597};
 			g.iterations = set_iteration(z, c, g.max_iterations);
-			img.color = select_color(g.iterations, g.max_iterations);
+			img.color = select_color(g.iterations, g.max_iterations, img);
 			put_pixel_in_img(&img, g.x++, g.y, img.color);
 		}
 		g.y++;

@@ -81,14 +81,14 @@ void	first_aux(int *iterations, int *red, int *green, int *blue)
 	}
 }
 
-int	select_color(int iterations, int max_iterations)
+int	select_color(int iterations, int max_iterations, t_Image img)
 {
 	t_Rgb	col;
 
 	col = (t_Rgb){0, 0, 0, 0};
 	if (iterations == max_iterations)
 		return (col.final_color = rgb_to_hex(col.red, col.green, col.blue));
-	iterations *= 15;
+	iterations *= 15 + img.multip;
 	if (iterations <= 255)
 		return (col.final_color = rgb_to_hex(iterations, col.green, col.blue));
 	while (iterations >= 0)
@@ -108,4 +108,14 @@ int	select_color(int iterations, int max_iterations)
 		}
 	}
 	return (col.final_color = rgb_to_hex(col.red, col.green, col.blue));
+}
+
+void	change_color(int keycode, t_Image *img)
+{
+	if (!img->multip)
+		img->multip = 0;
+	if (keycode == 69)
+		img->multip += 1;
+	if (keycode == 78)
+		img->multip -= 1;
 }

@@ -61,12 +61,13 @@ typedef struct s_Image
 	double	mx;
 	double	my;
 	char	*type;
+	int		multip;
 }	t_Image;
 
 double	complex_magnitude_squared(t_Complex z);
 int		set_iteration(t_Complex z, t_Complex c, int maxIterations);
 void	generate_julia_set(t_Image img);
-int		select_color(int iterations, int max_iterations);
+int		select_color(int iterations, int max_iterations, t_Image img);
 void	first_aux(int *iterations, int *red, int *green, int *blue);
 void	second_aux(int *iterations, int *red, int *green);
 int		rgb_to_hex(int red, int green, int blue);
@@ -81,6 +82,7 @@ int		f_strcmp(const char *s1, const char *s2);
 int		move_left_right(int keycode, t_Image *img);
 void	invert_color(t_Image *img);
 void	apply_zoom(t_Image *img, t_Mandm *g);
+void	change_color(int keycode, t_Image *img);
 
 # ifndef WIDTH
 #  define WIDTH 500
