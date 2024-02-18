@@ -12,13 +12,13 @@
 
 #include "fractol.h"
 
-void	f_printf(char const *str)
+void	f_printf(char const *str) //a very basic function that prints strings
 {
 	while (*str != '\0')
 		write(1, str++, 1);
 }
 
-int	f_strcmp(const char *s1, const char *s2)
+int	f_strcmp(const char *s1, const char *s2) //compares two strings to see if they are different
 {
 	int	cont;
 
