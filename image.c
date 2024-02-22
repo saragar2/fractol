@@ -45,7 +45,7 @@ int	move_left_right(int keycode, t_Image *img) //called by key_control in main.c
 		img->my = 0;
 
 	if (keycode == 123) //move right pressing the right arrow
-		img->mx += 0.5 * img->zoom; //saves the move for X, that is also countered by the zoom so it doesnt go to the center
+		img->mx += 0.5 * img->zoom; //saves the move for X, that is also countered by the zoom so when we use the movement its relative to the zoom
 	else if (keycode == 124)
 		img->mx -= 0.5 * img->zoom;//move left
 	else if (keycode == 125)
@@ -69,7 +69,7 @@ int	new_zoom(int button, int x, int y, t_Image *img) //called by the mouse zoom 
 	(void)y;
 	if (!img->zoom) //initialize
 		img->zoom = 1;
-	img->old_zoom = img->zoom;
+	img->old_zoom = img->zoom; //saves a copy to compare if there are any changes in the function apply_zoom
 	if (button == 4) //if we zoom in, zoom increases
 		img->zoom *= 1.2;
 	else if (button == 5) //same for zoom out
