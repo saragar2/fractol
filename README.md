@@ -2,7 +2,7 @@
 <br><h4>Frac-ol is one of the first graphic projects from the <a href="https://www.42madrid.com/">42 School</a> Common-Core. This is a fractal generator, all done in C code using MiniLibX, an own graphic library from the school. Includes Julia and Mandelbrot fractals. For the first one, you can edit the params so you get the fractal you want (they might be between -2 and 2, and they look better if they are between -1 and 1). You can navegate through the image, zoom, and change the iterations (so the color changes).<br>
 <br>✨--- This project is done following 42 Norminette, so the code has the cleanest appearance possible.
 <br>🎈--- Includes Julia and Mandelbrot fractals, and some bonus functions as moving with the arrows, zoom, and changing the colors.
-<br>🎯--- (Not evaluated).
+<br>🎯--- Approved by peers with the final mark <b>115</b>.
 <br>🕑--- Finished: 17th February 2024
 <br>📜--- Includes comments so it is easier to understand the code
 <br>⚠️--- This program only works correctly in macOS<br>
