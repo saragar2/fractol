@@ -8,10 +8,10 @@
 <br>⚠️--- This program only works correctly in macOS<br>
 </h4><br>
 <h2>g e n e r a l &#160 &#160 i n s t r u c t i o n s</h2>
-<h4><br>~~ Use the wheel from the mouse o zoom in or zoom out
+<h4><br>~~ Use the wheel from the mouse to zoom in or zoom out
 <br>~~ Click with any part of the mouse to reset the fractal to the default config, as zoom, movement and colors.
 <br>~~ Navigate through the fractal using the arrows in your keyboard.
-<br>~~ Click on "+" and "-" in your keyboard to chnge the multiplyer of the iiterations, which changes the final colors of the fractal.</h4>
+<br>~~ Click on "+" and "-" in your keyboard to change the multiplyer of the iterations, which changes the final colors of the fractal.</h4>
 <h2>i m a g e s</h2>
 <br><img width="996" alt="Screen Shot 2024-02-17 at 7 23 32 PM" src="https://github.com/saragar2/fractol/assets/146083097/431ccf7d-efad-403e-bcdf-0a6fb757b668">
 <img width="995" alt="Screen Shot 2024-02-17 at 7 04 12 PM" src="https://github.com/saragar2/fractol/assets/146083097/a0fd61db-7a99-4a41-98d7-3085a7c44c73">
