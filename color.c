@@ -125,8 +125,8 @@ void	change_color(int keycode, t_Image *img) //function called in move_left_righ
 {
 	if (!img->multip) //we initialize multip in case it wasnt
 		img->multip = 0;
-	if (keycode == 69) //in case we press "+", multip increases by one
+	if (keycode == 65451) //in case we press "+", multip increases by one
 		img->multip += 1;
-	if (keycode == 78) //if we press "-", multip decreases by one
+	if (keycode == 65453) //if we press "-", multip decreases by one
 		img->multip -= 1;
 }

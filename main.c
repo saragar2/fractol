@@ -15,10 +15,10 @@
 
 int	key_control(int keycode, void *param)//function called in main to organize the hooks
 {
-	if (keycode == 9) //if "ESC" is pressed, the program closes in a clean way
+	if (keycode == 65307) //if "ESC" is pressed, the program closes in a clean way
 		exit(0);
-	if (keycode == 114 || keycode == 113 || keycode == 111 || keycode == 116 \
-	|| keycode == 69 || keycode == 78) //if any arrow or the "+" or "-" are pressed, we enter
+	if (keycode == 65361 || keycode == 65362 || keycode == 65363 || keycode == 65364 \
+	|| keycode == 65451 || keycode == 65453) //if any arrow or the "+" or "-" are pressed, we enter
 	//to move_left_right, in image.c
 		move_left_right(keycode, param);
 	return (0);

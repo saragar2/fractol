@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include "./mlx_linux/mlx.h"
 # include <stdio.h>
+# include <math.h>
 
 typedef struct s_Complex
 {
@@ -85,10 +86,10 @@ void	apply_zoom(t_Image *img, t_Mandm *g);
 void	change_color(int keycode, t_Image *img);
 
 # ifndef WIDTH
-#  define WIDTH 500
+#  define WIDTH 250
 # endif
 # ifndef HEIGHT
-#  define HEIGHT 500
+#  define HEIGHT 250
 # endif
 
 #endif

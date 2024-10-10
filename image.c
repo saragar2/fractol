@@ -44,13 +44,13 @@ int	move_left_right(int keycode, t_Image *img) //called by key_control in main.c
 	if (!img->my)
 		img->my = 0;
 
-	if (keycode == 114) //move right pressing the right arrow
-		img->mx += 0.5 * img->zoom; //saves the move for X, that is also countered by the zoom so when we use the movement its relative to the zoom
-	else if (keycode == 113)
-		img->mx -= 0.5 * img->zoom;//move left
-	else if (keycode == 111)
+	if (keycode == 65363) //move right pressing the right arrow
+		img->mx -= 0.5 * img->zoom; //saves the move for X, that is also countered by the zoom so when we use the movement its relative to the zoom
+	else if (keycode == 65361)
+		img->mx += 0.5 * img->zoom;//move left
+	else if (keycode == 65364)
 		img->my -= 0.5 * img->zoom; //move up
-	else if (keycode == 116)
+	else if (keycode == 65362)
 		img->my += 0.5 * img->zoom; //move down
 	change_color(keycode, img); //calling the change_color function, in color.c, which checks if we pressed "+" or "-"
 
