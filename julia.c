@@ -55,7 +55,7 @@ void	generate_julia_set(t_Image img) //base function to generate julia fractal, 
 			g.i_p *= img.zoom;
 			apply_zoom(&img, &g); //call to the function from image.c
 			z = (t_Complex){g.r_p, g.i_p}; //creation of the complex
-			c = (t_Complex){-0.484, 0.597}; //a constant complex number, which decides the structure of the fractal
+			c = (t_Complex){0.361, -0.067}; //a constant complex number, which decides the structure of the fractal
 			g.iterations = set_iteration(z, c, g.max_iterations);
 			img.color = select_color(g.iterations, g.max_iterations, img);
 			put_pixel_in_img(&img, g.x++, g.y, img.color);

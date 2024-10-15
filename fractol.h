@@ -70,7 +70,7 @@ int		set_iteration(t_Complex z, t_Complex c, int maxIterations);
 void	generate_julia_set(t_Image img);
 int		select_color(int iterations, int max_iterations, t_Image img);
 void	first_aux(int *iterations, int *red, int *green, int *blue);
-void	second_aux(int *iterations, int *red, int *green);
+void	second_aux(int *iterations, int *red, int *green, int *blue);
 int		rgb_to_hex(int red, int green, int blue);
 int		key_control(int keycode, void *param);
 int		go_exit_cross(void *param);

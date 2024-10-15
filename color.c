@@ -36,7 +36,7 @@ int	rgb_to_hex(int red, int green, int blue) //transforms the rgb color got in t
 	return (hex_color);
 }
 
-void	second_aux(int *iterations, int *red, int *green) //called inside first_aux, in this file
+void	second_aux(int *iterations, int *red, int *green, int *blue) //called inside first_aux, in this file
 {
 	if (*iterations >= 255)
 	{
@@ -46,6 +46,16 @@ void	second_aux(int *iterations, int *red, int *green) //called inside first_aux
 		{
 			*red = 255;
 			*iterations -= *red;
+			if (*iterations >= 255)
+			{
+				*blue = 0;
+				*iterations -= 255;
+			}
+			else
+			{
+				*blue -= *iterations;
+				*iterations = 0;
+			}
 		}
 		else
 		{
@@ -70,7 +80,7 @@ void	first_aux(int *iterations, int *red, int *green, int *blue) //called inside
 		{
 			*blue = 255;
 			*iterations -= *blue;
-			second_aux(iterations, red, green);
+			second_aux(iterations, red, green, blue);
 		}
 		else
 		{
@@ -95,7 +105,7 @@ int	select_color(int iterations, int max_iterations, t_Image img) //originally, 
 	if (iterations == max_iterations) //in case we reach max iterations, we will call rgb_to_hex with all values 0 so we get black
 		return (col.final_color = rgb_to_hex(col.red, col.green, col.blue));
 
-	iterations *= 15 + img.multip; //the max number of iterations is a little low, so we need to increase it with Multip,
+	iterations *= 20 + img.multip; //the max number of iterations is a little low, so we need to increase it with Multip,
 	//a variable that may change in change_color, at the end of the file
 	if (iterations <= 255) //in case the iterations are lower than 255, we return the final color done by rgb_to_hex
 	//using iterations instead of red, so it would be the same
