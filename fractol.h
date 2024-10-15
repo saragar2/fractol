@@ -84,12 +84,13 @@ int		move_left_right(int keycode, t_Image *img);
 void	invert_color(t_Image *img);
 void	apply_zoom(t_Image *img, t_Mandm *g);
 void	change_color(int keycode, t_Image *img);
+void	color_fix(int *iterations, int *blue);
 
 # ifndef WIDTH
-#  define WIDTH 250
+#  define WIDTH 500
 # endif
 # ifndef HEIGHT
-#  define HEIGHT 250
+#  define HEIGHT 500
 # endif
 
 #endif

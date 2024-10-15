@@ -32,3 +32,17 @@ int	f_strcmp(const char *s1, const char *s2) //compares two strings to see if th
 		cont = (unsigned char)*s1 - (unsigned char)*s2;
 	return (cont);
 }
+
+void	color_fix(int *iterations, int *blue)
+{
+	if (*iterations >= 255)
+	{
+		*blue = 0;
+		*iterations -= 255;
+	}
+	else
+	{
+		*blue -= *iterations;
+		*iterations = 0;
+	}
+}

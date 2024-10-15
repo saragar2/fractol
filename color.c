@@ -46,16 +46,7 @@ void	second_aux(int *iterations, int *red, int *green, int *blue) //called insid
 		{
 			*red = 255;
 			*iterations -= *red;
-			if (*iterations >= 255)
-			{
-				*blue = 0;
-				*iterations -= 255;
-			}
-			else
-			{
-				*blue -= *iterations;
-				*iterations = 0;
-			}
+			color_fix(iterations, blue);
 		}
 		else
 		{
