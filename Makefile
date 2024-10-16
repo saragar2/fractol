@@ -11,7 +11,8 @@ SRCS	=	color.c \
 			julia.c \
 			main.c \
 			mandelbrot.c \
-			utils.c
+			utils.c \
+			burning_ship.c
 
 OBJS	=	${SRCS:.c=.o}
 

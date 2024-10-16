@@ -85,6 +85,9 @@ void	invert_color(t_Image *img);
 void	apply_zoom(t_Image *img, t_Mandm *g);
 void	change_color(int keycode, t_Image *img);
 void	color_fix(int *iterations, int *blue);
+void	generate_bs_set(t_Image img);
+int		bs_set_iteration(t_Complex z, t_Complex c, int maxIterations);
+void	select_fractal(t_Image *img);
 
 # ifndef WIDTH
 #  define WIDTH 500
