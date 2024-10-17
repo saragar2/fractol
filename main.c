@@ -80,8 +80,9 @@ int	main(int argc, char *argv[])
 	t_Image	img;
 
 	img.type = argv[1]; //saving the argument we got frm CLI
-	img.zoom = 1.0;
+	img.zoom = 1;
 	img.old_zoom = 0;
+	img.multip = 0;
 	if (code_error(argc, argv) == 0) //if theres any error in the vaues got by CLI, returns 0
 		return (0);
 	img.mlx = mlx_init();

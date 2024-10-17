@@ -1,6 +1,7 @@
 
 NAME	=	fractol
 
+CC = cc
 CFLAGS	=	-Wall -Wextra -Werror -g3 # -fsanitize=address -O3 -fPIE 
 STRUCT			= -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
@@ -19,7 +20,7 @@ OBJS	=	${SRCS:.c=.o}
 all: $(NAME)
 
 $(NAME): $(UTILS) $(OBJS)
-	gcc $(CFLAGS) $(OBJS)  -o $(NAME) $(STRUCT) -I ./fractol.h
+	$(CC) $(CFLAGS) $(OBJS)  -o $(NAME) $(STRUCT) -I ./fractol.h
 
 clean:
 	rm -f $(OBJS)
