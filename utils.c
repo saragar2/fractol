@@ -14,8 +14,12 @@
 
 void	f_printf(char const *str) //a very basic function that prints strings
 {
+	int	cntrl;
+
 	while (*str != '\0')
-		write(1, str++, 1);
+		cntrl = write(1, str++, 1);
+	if (cntrl == -1)
+		return ;
 }
 
 int	f_strcmp(const char *s1, const char *s2) //compares two strings to see if they are different

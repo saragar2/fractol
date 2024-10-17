@@ -56,10 +56,12 @@ int	move_left_right(int keycode, t_Image *img) //called by key_control in main.c
 
 	//clears the window and resets by calling the base function
 	mlx_clear_window(img->mlx, img->win);
-	if (f_strcmp(img->type, "julia") == 0) //checks wich fractal are we doing
+	if (f_strcmp(img->type, "julia") == 0)
 		generate_julia_set(*img);
-	else
+	else if (f_strcmp(img->type, "mandelbrot") == 0)
 		generate_mandel_set(*img);
+	else if (f_strcmp(img->type, "bs") == 0)
+		generate_bs_set(*img);
 	return (0);
 }
 
@@ -88,8 +90,10 @@ int	new_zoom(int button, int x, int y, t_Image *img) //called by the mouse zoom 
 	mlx_clear_window(img->mlx, img->win);
 	if (f_strcmp(img->type, "julia") == 0)
 		generate_julia_set(*img);
-	else
+	else if (f_strcmp(img->type, "mandelbrot") == 0)
 		generate_mandel_set(*img);
+	else if (f_strcmp(img->type, "bs") == 0)
+		generate_bs_set(*img);
 	return (0);
 }
 
