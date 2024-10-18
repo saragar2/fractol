@@ -79,13 +79,9 @@ int	main(int argc, char *argv[])
 {
 	t_Image	img;
 
-	img.type = argv[1]; //saving the argument we got frm CLI
-	img.zoom = 1;
-	img.old_zoom = 0;
-	img.multip = 0;
+	init_img_soft(&img, argv);
 	if (code_error(argc, argv) == 0) //if theres any error in the vaues got by CLI, returns 0
 		return (0);
-	img.mlx = mlx_init();
 	select_fractal(&img);
 	//all hooks and their loop
 	mlx_mouse_hook(img.win, new_zoom, &img); //call to new_zoom, in image.c, when something is done with the mouse

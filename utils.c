@@ -50,3 +50,15 @@ void	color_fix(int *iterations, int *blue)
 		*iterations = 0;
 	}
 }
+
+void	init_img_soft(t_Image *i, char **argv)
+{
+	i->mlx = mlx_init();
+	i->color = 0;
+	i->zoom = 1;
+	i->old_zoom = 0;
+	i->mx = 0;
+	i->my = 0;
+	i->type = argv[1];
+	i->multip = 0;
+}

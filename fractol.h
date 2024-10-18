@@ -75,6 +75,7 @@ int		rgb_to_hex(int red, int green, int blue);
 int		key_control(int keycode, void *param);
 int		go_exit_cross(void *param);
 void	init_img(t_Image *img);
+void	init_img_soft(t_Image *i, char **argv);
 void	put_pixel_in_img(t_Image *img, int x, int y, int color);
 int		new_zoom(int button, int x, int y, t_Image *img);
 void	generate_mandel_set(t_Image img);
