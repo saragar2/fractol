@@ -13,31 +13,31 @@
 #include "fractol.h"
 #include <string.h>
 
-int	key_control(int keycode, void *param)//function called in main to organize the hooks
+int	key_control(int keycode, t_Image *img)//function called in main to organize the hooks
 {
 	if (keycode == 65307) //if "ESC" is pressed, the program closes in a clean way
-		exit(0);
+		on_destroy(img);
 	if (keycode == 65361 || keycode == 65362 || keycode == 65363 || keycode == 65364 \
 	|| keycode == 65451 || keycode == 65453) //if any arrow or the "+" or "-" are pressed, we enter
 	//to move_left_right, in image.c
-		move_left_right(keycode, param);
+		move_left_right(keycode, img);
 	return (0);
 }
 
-int	go_exit_cross(void *param) //called in the main. It closes the program
+int	go_exit_cross(t_Image *img) //called in the main. It closes the program
 {
-	(void)param;
-	exit(0);
+	on_destroy(img);
 	return (0);
 }
 
-int	code_error(int argc, char **argv) //called by the main function, checks main errors and prints
+int	code_error(int argc, char **argv, t_Image *img) //called by the main function, checks main errors and prints
 //an erorr code before returning 0
 {
 	//checks if there is more or less than two arguments
 	if (argc != 2)
 	{
 		f_printf("use \"julia\", \"mandelbrot\" or \"bs\" (for burning ship)");
+		on_destroy(img);
 		return (0);
 	}
 
@@ -46,6 +46,7 @@ int	code_error(int argc, char **argv) //called by the main function, checks main
 	&& f_strcmp(argv[1], "bs") != 0)
 	{
 		f_printf("use \"julia\", \"mandelbrot\" or \"bs\" (for burning ship)");
+		on_destroy(img);
 		return (0);
 	}
 	return (1);
@@ -75,19 +76,35 @@ void select_fractal(t_Image *img)
 	}
 }
 
+int	on_destroy(t_Image *i)
+{
+	if (i == NULL)
+		exit(0);
+	if (i->mlx && i->win)
+		mlx_destroy_window(i->mlx, i->win);
+	if (i->mlx)
+	{
+		mlx_loop_end(i->mlx);
+		mlx_destroy_display(i->mlx);
+		free(i->mlx);
+	}
+	exit(0);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_Image	img;
 
 	init_img_soft(&img, argv);
-	if (code_error(argc, argv) == 0) //if theres any error in the vaues got by CLI, returns 0
+	if (code_error(argc, argv, &img) == 0) //if theres any error in the vaues got by CLI, returns 0
 		return (0);
 	select_fractal(&img);
 	//all hooks and their loop
 	mlx_mouse_hook(img.win, new_zoom, &img); //call to new_zoom, in image.c, when something is done with the mouse
 	mlx_key_hook(img.win, key_control, &img); //call to key_control, in this file, when any key is pressed
-	mlx_hook(img.win, 17, 0, go_exit_cross, (void *)img.mlx); //call to go_exit_cross, in this file, when
+	mlx_hook(img.win, 17, 0, go_exit_cross, &img); //call to go_exit_cross, in this file, when
 	//the cross on the top of the window is clicked
 	mlx_loop(img.mlx);
+	on_destroy(&img);
 	return (0);
 }
