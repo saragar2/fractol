@@ -53,6 +53,7 @@ void	color_fix(int *iterations, int *blue)
 
 void	init_img_soft(t_Image *i, char **argv)
 {
+	i->win = NULL;
 	i->mlx = mlx_init();
 	i->color = 0;
 	i->zoom = 1;

@@ -82,7 +82,8 @@ int	on_destroy(t_Image *i)
 		exit(0);
 	if (i->mlx && i->win)
 	{
-		mlx_destroy_image(i->mlx, i->image);
+		if (i->image)
+			mlx_destroy_image(i->mlx, i->image);
 		mlx_destroy_window(i->mlx, i->win);
 	}
 	if (i->mlx)
