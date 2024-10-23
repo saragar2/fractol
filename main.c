@@ -20,6 +20,7 @@ int	key_control(int keycode, t_Image *img)//function called in main to organize 
 	if (keycode == 65361 || keycode == 65362 || keycode == 65363 || keycode == 65364 \
 	|| keycode == 65451 || keycode == 65453) //if any arrow or the "+" or "-" are pressed, we enter
 	//to move_left_right, in image.c
+		//---R E V I S A R   P A R A   U S A R --- mlx_loop_hook(img->win, move_left_right, &img);
 		move_left_right(keycode, img);
 	return (0);
 }
