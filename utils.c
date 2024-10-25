@@ -37,7 +37,7 @@ int	f_strcmp(const char *s1, const char *s2) //compares two strings to see if th
 	return (cont);
 }
 
-void	color_fix(int *iterations, int *blue)
+void	color_fix(int *iterations, int *blue) //a little fix for the color algorythm, in color.c
 {
 	if (*iterations >= 255)
 	{
@@ -51,7 +51,7 @@ void	color_fix(int *iterations, int *blue)
 	}
 }
 
-void	init_img_soft(t_Image *i, char **argv)
+void	init_img_soft(t_Image *i, char **argv) //called in the main, initializes t_Image img
 {
 	i->win = NULL;
 	i->mlx = mlx_init();

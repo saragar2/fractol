@@ -92,10 +92,10 @@ void	select_fractal(t_Image *img);
 int		on_destroy(t_Image *i);
 
 # ifndef WIDTH
-#  define WIDTH 500
+#  define WIDTH 250
 # endif
 # ifndef HEIGHT
-#  define HEIGHT 500
+#  define HEIGHT 250
 # endif
 
 #endif
