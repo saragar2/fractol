@@ -12,9 +12,6 @@
 
 #include "fractol.h"
 
-//i am not commenting this because its exactly the same as julia.c, with the only
-//difference in the line 36, where the constant complex is the same as the initial Z complex
-
 void	generate_mandel_set(t_Image img)
 {
 	t_Mandm		g;

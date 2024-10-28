@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-int	rgb_to_hex(int red, int green, int blue) //transforms the rgb color got in the previous functions to hex
+int	rgb_to_hex(int red, int green, int blue)
 {
 	int	hex_color;
 
@@ -29,14 +29,11 @@ int	rgb_to_hex(int red, int green, int blue) //transforms the rgb color got in t
 		blue = 0;
 	else if (blue > 255)
 		blue = 255;
-
-	//using byte shifting, we place the "numbers" we got in their correct place so it turns an hex number,
-	//and return it to take it back in both julia and mandelbrot generate function
 	hex_color = (red << 16) | (green << 8) | blue;
 	return (hex_color);
 }
 
-void	second_aux(int *iterations, int *red, int *green, int *blue) //called inside first_aux, in this file
+void	second_aux(int *iterations, int *red, int *green, int *blue)
 {
 	if (*iterations >= 255)
 	{
@@ -61,7 +58,7 @@ void	second_aux(int *iterations, int *red, int *green, int *blue) //called insid
 	}
 }
 
-void	first_aux(int *iterations, int *red, int *green, int *blue) //called inside select_color, in this file
+void	first_aux(int *iterations, int *red, int *green, int *blue)
 {
 	if (*iterations >= 255)
 	{
@@ -86,23 +83,16 @@ void	first_aux(int *iterations, int *red, int *green, int *blue) //called inside
 	}
 }
 
-int	select_color(int iterations, int max_iterations, t_Image img) //originally, this was an algorythm made of 80 lines,
-//but because of norminette i had to split it into three functions: select_color, first_aux, and second_aux
+int	select_color(int iterations, int max_iterations, t_Image img)
 {
 	t_Rgb	col;
 
-	col = (t_Rgb){0, 0, 0, 0}; //declares red, green, blue and final_color
-
-	if (iterations == max_iterations) //in case we reach max iterations, we will call rgb_to_hex with all values 0 so we get black
+	col = (t_Rgb){0, 0, 0, 0};
+	if (iterations == max_iterations)
 		return (col.final_color = rgb_to_hex(col.red, col.green, col.blue));
-
-	iterations *= 20 + img.multip; //the max number of iterations is a little low, so we need to increase it with Multip,
-	//a variable that may change in change_color, at the end of the file
-	if (iterations <= 255) //in case the iterations are lower than 255, we return the final color done by rgb_to_hex
-	//using iterations instead of red, so it would be the same
+	iterations *= 20 + img.multip;
+	if (iterations <= 255)
 		return (col.final_color = rgb_to_hex(iterations, col.green, col.blue));
-
-	//there starts the algorythm. Knowing how rgb works, we increase or decrease the variables red, green and blue depending on the iterations.
 	while (iterations >= 0)
 	{
 		col.red = 255;
@@ -122,12 +112,12 @@ int	select_color(int iterations, int max_iterations, t_Image img) //originally, 
 	return (col.final_color = rgb_to_hex(col.red, col.green, col.blue));
 }
 
-void	change_color(int keycode, t_Image *img) //function called in move_left_right, in image.c
+void	change_color(int keycode, t_Image *img)
 {
-	if (!img->multip) //we initialize multip in case it wasnt
+	if (!img->multip)
 		img->multip = 0;
-	if (keycode == 65451) //in case we press "+", multip increases by one
+	if (keycode == 65451)
 		img->multip += 1;
-	if (keycode == 65453) //if we press "-", multip decreases by one
+	if (keycode == 65453)
 		img->multip -= 1;
 }

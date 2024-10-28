@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-void	f_printf(char const *str) //a very basic function that prints strings
+void	f_printf(char const *str)
 {
 	int	cntrl;
 
@@ -22,7 +22,7 @@ void	f_printf(char const *str) //a very basic function that prints strings
 		return ;
 }
 
-int	f_strcmp(const char *s1, const char *s2) //compares two strings to see if they are different
+int	f_strcmp(const char *s1, const char *s2)
 {
 	int	cont;
 
@@ -37,7 +37,7 @@ int	f_strcmp(const char *s1, const char *s2) //compares two strings to see if th
 	return (cont);
 }
 
-void	color_fix(int *iterations, int *blue) //a little fix for the color algorythm, in color.c
+void	color_fix(int *iterations, int *blue)
 {
 	if (*iterations >= 255)
 	{
@@ -51,7 +51,7 @@ void	color_fix(int *iterations, int *blue) //a little fix for the color algoryth
 	}
 }
 
-void	init_img_soft(t_Image *i, char **argv) //called in the main, initializes t_Image img
+void	init_img_soft(t_Image *i, char **argv)
 {
 	i->win = NULL;
 	i->mlx = mlx_init();
