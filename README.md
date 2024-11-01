@@ -1,4 +1,8 @@
 <h1>🌀 F R A C T - O L 🌀</h1>
+
+![ezgif-3-76f2dace83](https://github.com/user-attachments/assets/b0739a0a-19e0-4ece-9a33-d99adc31246d)
+
+
 <br><h4>Fract-ol is one of the first graphic projects from the <a href="https://www.42madrid.com/">42 School</a> Common-Core. This is a fractal generator, all done in C code using MiniLibX, an own graphic library from the school. Includes Julia, Mandelbrot and Burning ship fractals. For the first one, you can edit the params so you get the fractal you want (they might be between -2 and 2, and they look better if they are between -1 and 1). You can navegate through the image, zoom, and change the iterations (so the color changes).<br>
 <br>✨--- This project is done following 42 Norminette, so the code has the cleanest appearance possible.
 <br>🎈--- Includes Julia, Mandelbrot and Burning ship fractals, and some bonus functions as moving with the arrows, zoom, and changing the colors.
