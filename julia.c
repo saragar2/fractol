@@ -48,6 +48,7 @@ void	generate_julia_set(t_Image img)
 		while (g.x < WIDTH)
 		{
 			g.r_p = g.xmin + (g.x - img.mx) * (g.xmax - g.xmin) / (WIDTH - 1);
+			g.r_p *= img.zoom;
 			g.i_p = g.ymin + (g.y - img.my) * (g.ymax - g.ymin) / (HEIGHT - 1);
 			g.i_p *= img.zoom;
 			apply_zoom(&img, &g);
