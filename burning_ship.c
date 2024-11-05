@@ -1,22 +1,29 @@
 #include "fractol.h"
 
-int	bs_set_iteration(t_Complex z, t_Complex c, int maxIterations)
+int	bs_set_iteration(t_Complex z, t_Complex c, int maxIterations) //called in the base functions, discovers how many
+//iterations are needed so the complex tends to infinity. This one is different than the one for julia and mandelbrot
+//because of the line 16, where temp_imag is the result of an operation with absolute numbers
 {
 	int		iterations;
 	double	temp_real;
 	double	temp_imag;
 
 	iterations = 0;
-	while (complex_magnitude_squared(z) < 4.0 && iterations < maxIterations)
+	while (complex_magnitude_squared(z) < 4.0 && iterations < maxIterations) //checks if the square of the complex
+	//is bigger than the max magnitude and if iterations are lower than the maximum number
 	{
-		temp_real = z.real * z.real - z.imag * z.imag + c.real;
-		temp_imag = fabs(2.0 * z.real * z.imag) + c.imag;
+		temp_real = z.real * z.real - z.imag * z.imag + c.real; //real part of the next iteration
+		temp_imag = fabs(2.0 * z.real * z.imag) + c.imag; //imaginary part of the next iteration
 		z.real = temp_real;
 		z.imag = temp_imag;
 		iterations++;
 	}
 	return (iterations);
 }
+
+//i am not commenting this because its exactly the same as julia.c, with the only
+//difference in the line 46, where we call the specific function for this fractal that
+//sets the iterations
 
 void	generate_bs_set(t_Image img)
 {
