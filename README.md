@@ -22,8 +22,8 @@
 <br><code>./fractol bs</code>
 <h2>i m a g e s</h2>
 <br>
-<img width="995" alt="Screen Shot 2024-02-17 at 7 04 12 PM" src="https://github.com/saragar2/fractol/assets/146083097/a0fd61db-7a99-4a41-98d7-3085a7c44c73">
-<img width="995" alt="Screen Shot 2024-02-17 at 7 16 53 PM" src="https://github.com/saragar2/fractol/assets/146083097/d7fc7871-57b0-43f8-ad06-c8a2532c7daf">
-<img width="996" alt="Screen Shot 2024-02-17 at 7 23 32 PM" src="https://github.com/user-attachments/assets/4f1a7c92-247e-4f4a-b786-f6a9396d6861">
+<img width="995" alt="Julia set" src="https://github.com/user-attachments/assets/2957d376-3818-4b99-b0f3-6972fa069b9e">
+<img width="995" alt="zoom in Mandelbrot set" src="https://github.com/user-attachments/assets/a3049861-2fb2-4c2c-8780-3115a130263b">
+<img width="996" alt="zoom in burning ship" src="https://github.com/user-attachments/assets/4f1a7c92-247e-4f4a-b786-f6a9396d6861">
 
 
